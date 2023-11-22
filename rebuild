@@ -91,7 +91,7 @@ default_tags="stable"
 specific_tags="${default_tags}"
 # Set the list of kernels used by default
 rk3588_kernel=("5.10.1")
-rk35xx_kernel=("5.10.1")
+rk35xx_kernel=("5.10.160")
 h6_kernel=("6.5.1")
 stable_kernel=("6.1.1" "5.15.1")
 flippy_kernel=(${stable_kernel[@]})
@@ -1098,6 +1098,7 @@ loop_rebuild() {
                     if [[ "${KERNEL_TAGS}" =~ ^[0-9]{1,2}\.[0-9]+ ]]; then
                         [[ "${kernel}" != "$(echo ${KERNEL_TAGS} | awk -F'.' '{print $1"."$2"."}')"* ]] && {
                             echo -e "(${j}.${i}) ${PROMPT} The [ ${board} ] device cannot use [ ${kd}/${kernel} ] kernel, skip."
+			    echo -e "${kernel} ${KERNEL_TAGS}"
                             let i++
                             continue
                         }
